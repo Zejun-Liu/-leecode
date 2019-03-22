@@ -26,7 +26,7 @@ import java.util.Set;
  * <p>
  * 尽可能想出更多的解决方案，至少有三种不同的方法可以解决这个问题。
  * 要求使用空间复杂度为 O(1) 的原地算法。
- * @see <a href="https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/1/array/23/"></a>
+ * @see <a href="https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/1/array/24/"></a>
  */
 class Solution {
     public static void main(String[] args) {
