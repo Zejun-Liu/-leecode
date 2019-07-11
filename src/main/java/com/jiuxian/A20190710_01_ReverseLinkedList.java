@@ -22,24 +22,40 @@ package com.jiuxian;
  * 链接：https://leetcode-cn.com/problems/reverse-linked-list
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
+@SuppressWarnings("Duplicates")
 public class A20190710_01_ReverseLinkedList {
 
     private static ListNode reverseList(ListNode head) {
         if (head == null) {
             return null;
         }
-
-        ListNode result = null;
-        ListNode current = head;
-        while (current != null) {
-            ListNode tmp = current.next;
-            current.next = result;
-            result = current;
-            current = tmp;
+        ListNode pre = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = next;
         }
-        return result;
+        return pre;
     }
 
+    public static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+
+        @Override
+        public String toString() {
+            return "ListNode{" + "val=" + val + ", next=" + next + '}';
+        }
+    }
+
+
+    @SuppressWarnings("Duplicates")
     public static void main(String[] args) {
         ListNode node = new ListNode(1);
         ListNode node1 = new ListNode(2);
@@ -54,20 +70,4 @@ public class A20190710_01_ReverseLinkedList {
     }
 
 
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-
-        @Override
-        public String toString() {
-            return "ListNode{" +
-                    "val=" + val +
-                    ", next=" + next +
-                    '}';
-        }
-    }
 }

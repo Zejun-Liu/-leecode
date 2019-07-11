@@ -23,23 +23,36 @@ package com.jiuxian;
  * 链接：https://leetcode-cn.com/problems/swap-nodes-in-pairs
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
+@SuppressWarnings("Duplicates")
 public class A20190710_02_SwapLinkedListPairs {
 
-    public static ListNode swapPairs(ListNode head) {
+    private static ListNode swapPairs(ListNode head) {
         ListNode node = head;
-        //辅助虚拟头节点
         ListNode dummyHead = new ListNode(0);
         dummyHead.next = head;
         ListNode pre = dummyHead;
         while (node != null && node.next != null) {
             ListNode temp = node.next;
+
             node.next = node.next.next;
+
             temp.next = node;
             pre.next = temp;
+
             pre = node;
             node = node.next;
         }
         return dummyHead.next;
+    }
+
+    private static ListNode swapPairs2(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode next = head.next;
+        head.next = swapPairs2(next.next);
+        next.next = head;
+        return next;
     }
 
     public static class ListNode {
@@ -52,10 +65,7 @@ public class A20190710_02_SwapLinkedListPairs {
 
         @Override
         public String toString() {
-            return "ListNode{" +
-                    "val=" + val +
-                    ", next=" + next +
-                    '}';
+            return "ListNode{val=" + val + ", next=" + next + "}";
         }
     }
 
