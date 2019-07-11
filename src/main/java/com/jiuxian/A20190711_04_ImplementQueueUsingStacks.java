@@ -36,7 +36,7 @@ import java.util.Stack;
  * 链接：https://leetcode-cn.com/problems/implement-queue-using-stacks
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class A20190711_04ImplementQueueUsingStacks {
+public class A20190711_04_ImplementQueueUsingStacks {
 
     private Stack<Integer> in;
     private Stack<Integer> out;
@@ -44,7 +44,7 @@ public class A20190711_04ImplementQueueUsingStacks {
     /**
      * Initialize your data structure here.
      */
-    public A20190711_04ImplementQueueUsingStacks() {
+    public A20190711_04_ImplementQueueUsingStacks() {
         in = new Stack<>();
         out = new Stack<>();
     }

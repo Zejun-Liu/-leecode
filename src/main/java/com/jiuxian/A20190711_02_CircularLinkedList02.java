@@ -47,7 +47,7 @@ package com.jiuxian;
  * 链接：https://leetcode-cn.com/problems/linked-list-cycle-ii
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  **/
-public class A20190711_02CircularLinkedList02 {
+public class A20190711_02_CircularLinkedList02 {
 
     public ListNode detectCycle(ListNode head) {
 

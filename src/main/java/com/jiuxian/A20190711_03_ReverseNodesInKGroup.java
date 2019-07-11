@@ -33,7 +33,7 @@ package com.jiuxian;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  **/
 @SuppressWarnings({ "Duplicates", "AlibabaLowerCamelCaseVariableNaming" })
-public class A20190711_03ReverseNodesInKGroup {
+public class A20190711_03_ReverseNodesInKGroup {
 
     private ListNode reverseKGroup(ListNode head, int k) {
 
@@ -101,7 +101,7 @@ public class A20190711_03ReverseNodesInKGroup {
         node2.next = new ListNode(4);
 
         System.out.println(node);
-        ListNode node4 = new A20190711_03ReverseNodesInKGroup().reverseKGroup(node, 3);
+        ListNode node4 = new A20190711_03_ReverseNodesInKGroup().reverseKGroup(node, 3);
         System.out.println(node4);
     }
 }
