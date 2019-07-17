@@ -148,10 +148,6 @@ public class A20190717_02_ValidateBinarySearchTree {
         return root;
     }
 
-    public static String booleanToString(boolean input) {
-        return input ? "True" : "False";
-    }
-
     public static void main(String[] args) {
 
         TreeNode root = stringToTreeNode("[5,1,4,null,null,3,6]");
