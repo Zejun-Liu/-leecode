@@ -39,7 +39,7 @@ import java.util.*;
  */
 public class A20190720_02_BinaryTreeLevelOrderTraversal_102 {
 
-    static class Solution {
+    private static class Solution {
         //BFS 广度优先
         List<List<Integer>> levelOrder(TreeNode root) {
             List<List<Integer>> result = new ArrayList<>();

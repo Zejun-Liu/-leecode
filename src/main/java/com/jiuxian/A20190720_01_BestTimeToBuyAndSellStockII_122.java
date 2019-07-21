@@ -42,7 +42,7 @@ import java.util.Stack;
  */
 public class A20190720_01_BestTimeToBuyAndSellStockII_122 {
 
-    static class Solution {
+    private static class Solution {
         int maxProfit(int[] prices) {
             int len = prices.length;
             int sum = 0;
