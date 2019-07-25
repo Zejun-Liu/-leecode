@@ -1,6 +1,7 @@
 package com.jiuxian;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -40,14 +41,69 @@ import java.util.List;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class A20190725_02_WordSearchII_212 {
+
     private static class Solution {
+        private int[][] direction = { { -1, 0 }, { 0, -1 }, { 0, 1 }, { 1, 0 } };
+        private boolean[][] marked;
+        private char[][] board;
+        private int rowLength;
+        private int colLength;
+
         public List<String> findWords(char[][] board, String[] words) {
+            if (board == null || board.length == 0 || words == null || words.length == 0) return Collections.emptyList();
+            this.board = board;
+            this.rowLength = board.length;
+            this.colLength = board[0].length;
             List<String> result = new ArrayList<>();
+            for (String word : words) {
+                this.marked = new boolean[rowLength][colLength];
+                for (int i = 0; i < rowLength; i++) {
+                    for (int j = 0; j < colLength; j++) {
+                        if (dfs(word, i, j, 0)) {
+                            result.add(word);
+                            i = rowLength;
+                            break;
+                        }
+                    }
+                }
+            }
+
             return result;
+        }
+
+        private boolean dfs(String word, int i, int j, int start) {
+            if (start == word.length() - 1) {
+                return board[i][j] == word.charAt(start);
+            }
+            if (board[i][j] == word.charAt(start)) {
+                marked[i][j] = true;
+                for (int direct = 0; direct < 4; direct++) {
+                    int x = i + direction[direct][0];
+                    int y = j + direction[direct][1];
+                    if (!inArea(x, y) || marked[x][y]) continue;
+                    if (dfs(word, x, y, start + 1)) {
+                        return true;
+                    }
+                }
+                marked[i][j] = false;
+            }
+            return false;
+        }
+
+
+        private boolean inArea(int x, int y) {
+            return x >= 0 && y >= 0 && x < rowLength && y < colLength;
         }
     }
 
     public static void main(String[] args) {
-
+        String[] words = { "oath", "pea", "eat", "rain" };
+        char[][] board = {
+                { 'o', 'a', 'a', 'n' },
+                { 'e', 't', 'a', 'e' },
+                { 'i', 'h', 'k', 'r' },
+                { 'i', 'f', 'l', 'v' } };
+        List<String> result = new Solution().findWords(board, words);
+        System.out.println(result);
     }
 }
