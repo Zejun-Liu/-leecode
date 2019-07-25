@@ -1,7 +1,5 @@
 package com.jiuxian.util;
 
-import com.jiuxian.A20190717_02_ValidateBinarySearchTree;
-
 import java.util.LinkedList;
 import java.util.Queue;
 

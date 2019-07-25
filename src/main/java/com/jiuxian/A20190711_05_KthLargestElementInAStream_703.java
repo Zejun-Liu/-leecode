@@ -32,12 +32,12 @@ import java.util.Queue;
  * 链接：https://leetcode-cn.com/problems/kth-largest-element-in-a-stream
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class A20190711_05_KthLargestElementInAStream {
+public class A20190711_05_KthLargestElementInAStream_703 {
 
     private Queue<Integer> priorityQueue;
     private int k;
 
-    public A20190711_05_KthLargestElementInAStream(int k, int[] nums) {
+    public A20190711_05_KthLargestElementInAStream_703(int k, int[] nums) {
         priorityQueue = new PriorityQueue<>(k);
         this.k = k;
         this.init(nums);
@@ -64,7 +64,7 @@ public class A20190711_05_KthLargestElementInAStream {
 
     public static void main(String[] args) {
         int[] nums = { 4, 5, 8, 2 };
-        A20190711_05_KthLargestElementInAStream stream = new A20190711_05_KthLargestElementInAStream(3, nums);
+        A20190711_05_KthLargestElementInAStream_703 stream = new A20190711_05_KthLargestElementInAStream_703(3, nums);
         System.out.println(stream.getPriorityQueue());
         System.out.println(stream.add(3));
         System.out.println(stream.add(5));

@@ -43,7 +43,7 @@ import java.util.*;
  * 链接：https://leetcode-cn.com/problems/sliding-window-maximum
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  **/
-public class A20190712_01_SlidingWindowMaximum {
+public class A20190712_01_SlidingWindowMaximum_239 {
 
     public int[] maxSlidingWindow1(int[] nums, int k) {
         int n = nums.length;
@@ -89,7 +89,7 @@ public class A20190712_01_SlidingWindowMaximum {
 
     public static void main(String[] args) {
         int[] nums = { 1, 3, 1, 2, 0, 5 };
-        int[] after = new A20190712_01_SlidingWindowMaximum().maxSlidingWindow(nums, 3);
+        int[] after = new A20190712_01_SlidingWindowMaximum_239().maxSlidingWindow(nums, 3);
         System.out.println(Arrays.toString(after));
         Assert.assertEquals(Arrays.toString(after), "[3, 3, 2, 5]");
     }

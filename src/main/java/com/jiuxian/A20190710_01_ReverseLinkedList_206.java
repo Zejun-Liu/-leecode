@@ -23,7 +23,7 @@ package com.jiuxian;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 @SuppressWarnings("Duplicates")
-public class A20190710_01_ReverseLinkedList {
+public class A20190710_01_ReverseLinkedList_206 {
 
     private static ListNode reverseList(ListNode head) {
         if (head == null) {
@@ -65,7 +65,7 @@ public class A20190710_01_ReverseLinkedList {
         node2.next = new ListNode(4);
 
         System.out.println(node);
-        ListNode node4 = A20190710_01_ReverseLinkedList.reverseList(node);
+        ListNode node4 = A20190710_01_ReverseLinkedList_206.reverseList(node);
         System.out.println(node4);
     }
 

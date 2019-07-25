@@ -1,8 +1,7 @@
 package com.jiuxian;
 
-import org.omg.PortableInterceptor.INACTIVE;
-
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author: liuzejun
@@ -27,7 +26,7 @@ import java.util.*;
  * 链接：https://leetcode-cn.com/problems/two-sum
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class A20190716_02_2Sum {
+public class A20190716_02_2Sum_1 {
 
     public int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();

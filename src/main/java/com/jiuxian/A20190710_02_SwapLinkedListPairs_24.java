@@ -24,7 +24,7 @@ package com.jiuxian;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 @SuppressWarnings("Duplicates")
-public class A20190710_02_SwapLinkedListPairs {
+public class A20190710_02_SwapLinkedListPairs_24 {
 
     private static ListNode swapPairs(ListNode head) {
         ListNode node = head;
@@ -78,7 +78,7 @@ public class A20190710_02_SwapLinkedListPairs {
         node2.next = new ListNode(4);
 
         System.out.println(node);
-        ListNode node4 = A20190710_02_SwapLinkedListPairs.swapPairs(node);
+        ListNode node4 = A20190710_02_SwapLinkedListPairs_24.swapPairs(node);
         System.out.println(node4);
     }
 }

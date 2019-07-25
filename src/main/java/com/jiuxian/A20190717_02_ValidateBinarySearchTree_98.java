@@ -46,7 +46,7 @@ import java.util.List;
  * 链接：https://leetcode-cn.com/problems/validate-binary-search-tree
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class A20190717_02_ValidateBinarySearchTree {
+public class A20190717_02_ValidateBinarySearchTree_98 {
 
     public boolean isValidBST(TreeNode root) {
         List<Integer> list = new ArrayList<>();
@@ -99,7 +99,7 @@ public class A20190717_02_ValidateBinarySearchTree {
     public static void main(String[] args) {
 
         TreeNode root = TreeUtil.getTree("[5,1,4,null,null,3,6]");
-        boolean validBST = new A20190717_02_ValidateBinarySearchTree().isValidBST1(root);
+        boolean validBST = new A20190717_02_ValidateBinarySearchTree_98().isValidBST1(root);
         System.out.println(validBST);
     }
 }

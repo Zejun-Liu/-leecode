@@ -32,7 +32,7 @@ import java.util.*;
  * 链接：https://leetcode-cn.com/problems/4sum
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class A20190717_01_4Sum {
+public class A20190717_01_4Sum_18 {
 
     public List<List<Integer>> fourSum(int[] nums, int target) {
         if (nums.length < 4) return Collections.emptyList();
