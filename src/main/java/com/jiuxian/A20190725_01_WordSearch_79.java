@@ -83,13 +83,62 @@ public class A20190725_01_WordSearch_79 {
 
     }
 
+    private static class Solution2 {
+        private class TrieNode {
+            private TrieNode[] nodes = new TrieNode[26];
+
+            private int getKey(char ch) {
+                return ch - 'A';
+            }
+
+            public boolean containsKey(char ch) {
+                return nodes[getKey(ch)] != null;
+            }
+
+            public TrieNode getNode(char ch) {
+                return nodes[getKey(ch)];
+            }
+
+            public void put(char ch, TrieNode node) {
+                nodes[getKey(ch)] = node;
+            }
+        }
+
+        private TrieNode insert(TrieNode root, char ch) {
+            if (!root.containsKey(ch)) {
+                root.put(ch, new TrieNode());
+            }
+            return root.getNode(ch);
+        }
+
+        private boolean search(TrieNode root, String word) {
+            TrieNode node = root;
+            for (char ch : word.toCharArray()) {
+                if (!node.containsKey(ch)) {
+                    return false;
+                }
+                node = node.getNode(ch);
+            }
+            return true;
+        }
+
+        public boolean exist(char[][] board, String word) {
+            TrieNode root = new TrieNode();
+            for (char[] chars : board) {
+                for (char ch : chars) {
+                    insert(root, ch);
+                }
+            }
+            return search(root, word);
+        }
+    }
+
     public static void main(String[] args) {
         char[][] board = {
                 { 'A', 'B', 'C', 'E' },
                 { 'S', 'F', 'C', 'S' },
                 { 'A', 'D', 'E', 'E' } };
-        boolean exist = new Solution().exist(board, "ABCCED");
+        boolean exist = new Solution2().exist(board, "ABCCED");
         System.out.println(exist);
-
     }
 }
