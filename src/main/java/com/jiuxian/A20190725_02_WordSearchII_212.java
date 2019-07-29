@@ -1,8 +1,6 @@
 package com.jiuxian;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author: liuzejun
@@ -96,6 +94,90 @@ public class A20190725_02_WordSearchII_212 {
         }
     }
 
+    private static class Solution2 {
+
+        public List<String> findWords(char[][] board, String[] words) {
+            if (board == null || board.length == 0 || words == null || words.length == 0) return Collections.emptyList();
+
+            Trie trie = new Trie();
+            for (String word : words) {
+                trie.insert(word);
+            }
+
+            int rowLength = board.length;
+            int colLength = board[0].length;
+
+            boolean[][] marked = new boolean[rowLength][colLength];
+            List<String> result = new ArrayList<>();
+
+            for (int i = 0; i < rowLength; i++) {
+                for (int j = 0; j < colLength; j++) {
+                    search(board, marked, i, j, rowLength, colLength, trie.root, result);
+                }
+            }
+            return new ArrayList<>(result);
+        }
+
+        private void search(char[][] board, boolean[][] marked, int row, int col, int rowLength, int colLength, TrieNode node, List<String> result) {
+            if (row < 0 || col < 0 || row >= rowLength || col >= colLength || marked[row][col]) return;
+
+            if (!node.containKey(board[row][col])) return;
+
+            node = node.get(board[row][col]);
+            if (node.getWord() != null) {
+                result.add(node.getWord());
+            }
+            marked[row][col] = true;
+            search(board, marked, row - 1, col, rowLength, colLength, node, result);
+            search(board, marked, row + 1, col, rowLength, colLength, node, result);
+            search(board, marked, row, col - 1, rowLength, colLength, node, result);
+            search(board, marked, row, col + 1, rowLength, colLength, node, result);
+            marked[row][col] = false;
+        }
+
+        private class Trie {
+            TrieNode root = new TrieNode();
+
+            void insert(String word) {
+                TrieNode node = this.root;
+                for (char ch : word.toCharArray()) {
+                    if (!node.containKey(ch)) {
+                        node.put(ch, new TrieNode());
+                    }
+                    node = node.get(ch);
+                }
+                node.setWord(word);
+            }
+        }
+
+        private class TrieNode {
+            private TrieNode[] trees = new TrieNode[26];
+
+            private String word;
+
+            boolean containKey(char ch) {
+                return trees[ch - 'a'] != null;
+            }
+
+            TrieNode get(char ch) {
+                return trees[ch - 'a'];
+            }
+
+            void put(char ch, TrieNode node) {
+                trees[ch - 'a'] = node;
+            }
+
+            void setWord(String word) {
+                this.word = word;
+            }
+
+            String getWord() {
+                return word;
+            }
+        }
+    }
+
+
     public static void main(String[] args) {
         String[] words = { "oath", "pea", "eat", "rain" };
         char[][] board = {
@@ -103,7 +185,7 @@ public class A20190725_02_WordSearchII_212 {
                 { 'e', 't', 'a', 'e' },
                 { 'i', 'h', 'k', 'r' },
                 { 'i', 'f', 'l', 'v' } };
-        List<String> result = new Solution().findWords(board, words);
+        List<String> result = new Solution2().findWords(board, words);
         System.out.println(result);
     }
 }

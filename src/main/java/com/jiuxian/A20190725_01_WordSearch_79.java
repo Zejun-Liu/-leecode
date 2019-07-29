@@ -84,52 +84,82 @@ public class A20190725_01_WordSearch_79 {
     }
 
     private static class Solution2 {
-        private class TrieNode {
-            private TrieNode[] nodes = new TrieNode[26];
-
-            private int getKey(char ch) {
-                return ch - 'A';
-            }
-
-            public boolean containsKey(char ch) {
-                return nodes[getKey(ch)] != null;
-            }
-
-            public TrieNode getNode(char ch) {
-                return nodes[getKey(ch)];
-            }
-
-            public void put(char ch, TrieNode node) {
-                nodes[getKey(ch)] = node;
-            }
-        }
-
-        private TrieNode insert(TrieNode root, char ch) {
-            if (!root.containsKey(ch)) {
-                root.put(ch, new TrieNode());
-            }
-            return root.getNode(ch);
-        }
-
-        private boolean search(TrieNode root, String word) {
-            TrieNode node = root;
-            for (char ch : word.toCharArray()) {
-                if (!node.containsKey(ch)) {
-                    return false;
-                }
-                node = node.getNode(ch);
-            }
-            return true;
-        }
 
         public boolean exist(char[][] board, String word) {
-            TrieNode root = new TrieNode();
-            for (char[] chars : board) {
-                for (char ch : chars) {
-                    insert(root, ch);
+            if (board == null || board.length == 0 || word == null || word.length() == 0) return false;
+
+            Trie trie = new Trie();
+            trie.insert(word);
+
+            int rowLength = board.length;
+            int colLength = board[0].length;
+            boolean[][] marked = new boolean[rowLength][colLength];
+            for (int i = 0; i < rowLength; i++) {
+                for (int j = 0; j < colLength; j++) {
+                    if (search(board, rowLength, colLength, i, j, marked, trie.root)) {
+                        return true;
+                    }
                 }
             }
-            return search(root, word);
+            return false;
+        }
+
+        private boolean search(char[][] board, int rowLength, int colLength, int row, int col, boolean[][] marked, TrieNode node) {
+            if (row < 0 || col < 0 || row >= rowLength || col >= colLength || marked[row][col]) return false;
+
+            if (!node.containsKey(board[row][col])) return false;
+
+            node = node.getNode(board[row][col]);
+
+            if (node.isEnd()) return true;
+
+            marked[row][col] = true;
+            if (search(board, rowLength, colLength, row + 1, col, marked, node)) return true;
+            if (search(board, rowLength, colLength, row - 1, col, marked, node)) return true;
+            if (search(board, rowLength, colLength, row, col + 1, marked, node)) return true;
+            if (search(board, rowLength, colLength, row, col - 1, marked, node)) return true;
+            marked[row][col] = false;
+            return false;
+        }
+
+        private class Trie {
+            TrieNode root = new TrieNode();
+
+            private void insert(String word) {
+                TrieNode node = this.root;
+                for (char ch : word.toCharArray()) {
+                    if (!node.containsKey(ch)) {
+                        node.put(ch, new TrieNode());
+                    }
+                    node = node.getNode(ch);
+                }
+                node.setEnd();
+            }
+        }
+
+        private class TrieNode {
+            private TrieNode[] nodes = new TrieNode[58];
+            private boolean isEnd;
+
+            boolean containsKey(char ch) {
+                return nodes[ch - 'A'] != null;
+            }
+
+            TrieNode getNode(char ch) {
+                return nodes[ch - 'A'];
+            }
+
+            void put(char ch, TrieNode node) {
+                nodes[ch - 'A'] = node;
+            }
+
+            void setEnd() {
+                isEnd = true;
+            }
+
+            boolean isEnd() {
+                return isEnd;
+            }
         }
     }
 
@@ -140,5 +170,12 @@ public class A20190725_01_WordSearch_79 {
                 { 'A', 'D', 'E', 'E' } };
         boolean exist = new Solution2().exist(board, "ABCCED");
         System.out.println(exist);
+
+        exist = new Solution2().exist(board, "SEE");
+        System.out.println(exist);
+
+        exist = new Solution2().exist(board, "ABCB");
+        System.out.println(exist);
     }
+
 }
